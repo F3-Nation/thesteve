@@ -173,6 +173,8 @@ Error message and password prompt
 
 <li>$:/plugins/flibbles/relink</li>
 
+<li>$:/plugins/nico/notebook-mobile</li>
+
 <li>$:/plugins/snowgoon88/edit-comptext</li>
 
 <li>$:/plugins/sq/editor-autolist</li>
@@ -10324,7 +10326,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/themes/nico/notebook]]</pre>
+# [[$:/plugins/nico/notebook-mobile]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -11468,6 +11470,21 @@ exports.encryptTiddler = encryptTiddlerWidget;</pre>
     }
 }</pre>
 </div>
+<div author="NicolasPetton" bag="default" core-version="&gt;=5.1.22" dependents="" description="JavaScript hooks for mobile devices support of the Notebook theme" list="" name="Mobile support for the Notebook theme" plugin-type="plugin" revision="0" source="https://github.com/NicolasPetton/Notebook" title="$:/plugins/nico/notebook-mobile" type="application/json" version="1.0.0">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/nico/notebook-mobile/js/notebookSidebarNav.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/nico/notebook-mobile/js/notebookSidebarNav.js&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/themes/nico/notebook-mobile/js/notebookSidebarNav.js\ntype: application/javascript\nmodule-type: global\n\nCloses the notebook sidebar on mobile when navigating\n\n\\*/\n(function(){\n\n    /*jslint node: true, browser: true */\n    /*global $tw: false */\n    \&quot;use strict\&quot;;\n\n    const isOnMobile = () =&gt; {\n\t\tlet bottombar = document.querySelector('.nc-bottombar');\n\t\treturn bottombar &amp;&amp; bottombar.getClientRects().length &gt; 0;\n    };\n\n    const closeSidebar = () =&gt; {\n\t\t$tw.wiki.setText(\&quot;$:/state/notebook-sidebar\&quot;, \&quot;text\&quot;, undefined, \&quot;no\&quot;);\n    };\n\n    const closeSidebarOnMobile = () =&gt; {\n\t\tif (isOnMobile()) {\n            console.log(\&quot;closing sidebar\&quot;);\n\t\t\tcloseSidebar();\n\t\t};\n    };\n\n    const setup = () =&gt; {\n\t\t$tw.hooks.addHook(\&quot;th-navigating\&quot;,function(event) {\n\t\t\tcloseSidebarOnMobile();\n\t\t\treturn event;\n\t\t});\n    };\n\n    setup();\n\n    exports.closeNotebookSidebar = closeSidebar;\n})();\n&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;global&quot;,
+            &quot;created&quot;: &quot;20200430151329085&quot;,
+            &quot;modified&quot;: &quot;20201210200127495&quot;,
+            &quot;tags&quot;: &quot;&quot;
+        }
+    }
+}</pre>
+</div>
 <div author="AlainD" bag="default" core-version="&gt;=5.1.13" created="20210220052451383" dependents="" description="Editor with some on-line completion capabilities" list="readme usage examples" modified="20210220052451383" plugin-type="plugin" revision="0" source="https://github.com/snowgoon88/TW5-extendedit" title="$:/plugins/snowgoon88/edit-comptext" type="application/json" version="0.9.1">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -11811,7 +11828,7 @@ exports.encryptTiddler = encryptTiddlerWidget;</pre>
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
 <div created="20210515015848956" list="$:/Import $:/ControlPanel [[The Steve]]" modified="20210515015848956" title="$:/StoryList">
 <pre></pre>
