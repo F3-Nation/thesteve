@@ -193,6 +193,8 @@ Error message and password prompt
 
 <li>$:/plugins/kookma/utility</li>
 
+<li>$:/plugins/mau/TableTool</li>
+
 <li>$:/plugins/nico/notebook-mobile</li>
 
 <li>$:/plugins/nico/shields</li>
@@ -10448,7 +10450,7 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/config/KookmaPluginLibrary]]</pre>
+# [[$:/plugins/mau/TableTool]]</pre>
 </div>
 <div bag="default" revision="0" title="$:/isEncrypted">
 <pre>no</pre>
@@ -12236,6 +12238,587 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
     }
 }</pre>
 </div>
+<div author=")+(auloop" bag="default" core-version="&gt;=5.1.15" created="20181016214004074" description="TableTool" modified="20181016214004074" plugin-type="plugin" revision="0" title="$:/plugins/mau/TableTool" type="application/json" version="0.2.1">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/mau/TableTool/config/tbl-conf-prefix&quot;: {
+            &quot;text&quot;: &quot;$:/tbl&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/plain&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/config/tbl-conf-prefix&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181011101830552&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170415230522684&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/config/tbl-css&quot;: {
+            &quot;text&quot;: &quot;/* table.tbl tr:nth-child(odd) {background-color: #f2f2f2} */\ntable.tbl {display:block;overflow-x:auto;}\ntable.tbl th, table.tbl td {position:relative;}\ntable.tbl tr:hover {background-color: #f5f5f5}\n.noBorder, .noBorder td, .noBorder th, .noBorder tr {border:0}&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/css&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/config/tbl-css&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin $:/tags/Stylesheet&quot;,
+            &quot;modified&quot;: &quot;20181013100442267&quot;,
+            &quot;created&quot;: &quot;20171105214835600&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/config/tbl-filter&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-filter() [tag[$(tbl-name)$]allafter:include&lt;start-row&gt;first{$(tbl-max-rows)$}]&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/config/tbl-filter&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modified&quot;: &quot;20181015200311395&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;created&quot;: &quot;20171223173542428&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/config/tbl-max-rows&quot;: {
+            &quot;text&quot;: &quot;50&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/config/tbl-max-rows&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modified&quot;: &quot;20181011101830630&quot;,
+            &quot;created&quot;: &quot;20180116211607645&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/config/tbl-row-id-mask&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-row-id() $(tbl-name)$/$(id)$&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/config/tbl-row-id-mask&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311388&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180820194437205&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/delete-selected&quot;: {
+            &quot;text&quot;: &quot;&lt;!--------------------------\n-- \&quot;Delete selected\&quot; control\n--&gt;\n&lt;$button&gt;\nDelete selected\n&lt;$action-deletetiddler $filter=\&quot;\&quot;\&quot;[tag&lt;tbl-name&gt;selected[true]]\&quot;\&quot;\&quot; /&gt;\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/delete-selected&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310646&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170414142821219&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/edit-selected&quot;: {
+            &quot;text&quot;: &quot;&lt;!------------------------\n-- \&quot;Edit selected\&quot; control\n--&gt;\n&lt;$button&gt;\nEdit selected\n&lt;$list filter=\&quot;\&quot;\&quot;[tag&lt;tbl-name&gt;selected[true]]\&quot;\&quot;\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;] -[list&lt;tbl-list-hidden&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;$action-setfield $field=&lt;&lt;tbl-col-id&gt;&gt; $value=\&quot;tbl-td-edit\&quot; /&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/edit-selected&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310638&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170414141953796&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/first-page&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-first-page()\n&lt;$action-setfield $tiddler=\&quot;\&quot;\&quot;$(tbl-start-row)$\&quot;\&quot;\&quot; text={{{[tag[$(tbl-name)$]first[]]}}} /&gt;\n\\end\n\n&lt;!----------------\n-- \&quot;First-Page\&quot; control\n--&gt;\n&lt;$button actions=&lt;&lt;tbl-first-page&gt;&gt; &gt;\n{{$:/core/images/chevron-left}}\n&lt;/$button&gt;\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/first-page&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;select-all&quot;: &quot;false&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310631&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180819170431494&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/hide-show-col&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-col-hidden-state() $(tbl-col)$##tbl-col-hidden\n\n&lt;!------------------------\n-- \&quot;Hide/show columns\&quot; control\n--&gt;\n&lt;$set name=\&quot;tbl-hide-show-qualifier\&quot; value=&lt;&lt;qualify \&quot;\&quot;\&quot;hide-show-columns\&quot;\&quot;\&quot;&gt;&gt; &gt;\n&lt;$set name=\&quot;tbl-hide-show-state\&quot; filter=\&quot;\&quot;\&quot;[[$:/state/tbl/]] +[addsuffix&lt;tbl-hide-show-qualifier&gt;]\&quot;\&quot;\&quot; &gt;\n&lt;$button popup=&lt;&lt;tbl-hide-show-state&gt;&gt; &gt;\nHide/show columns\n&lt;/$button&gt;\n\n&lt;$reveal type=\&quot;popup\&quot; position=\&quot;below\&quot; state=&lt;&lt;tbl-hide-show-state&gt;&gt; &gt;\n&lt;div class=\&quot;tc-drop-down\&quot;&gt;\n\n&lt;&lt;&lt;\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n&lt;$checkbox tiddler=&lt;&lt;tbl-col&gt;&gt; index=\&quot;tbl-col-hidden\&quot; checked=\&quot;true\&quot; unchecked=\&quot;false\&quot; default=\&quot;false\&quot;&gt;\n&lt;$transclude tiddler=&lt;&lt;tbl-col&gt;&gt; index=\&quot;tbl-col-label\&quot;/&gt;\n\n&lt;$reveal state=&lt;&lt;tbl-col-hidden-state&gt;&gt; type=\&quot;match\&quot; text=\&quot;true\&quot; default=\&quot;false\&quot;&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;tbl-col&gt;&gt; $index=\&quot;tbl-col-hidden\&quot; $value=\&quot;false\&quot; /&gt;\n&lt;$action-listops $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=\&quot;tbl-list-hidden\&quot; $subfilter=\&quot;\&quot;\&quot;-[&lt;tbl-col-id&gt;]\&quot;\&quot;\&quot; /&gt;\n&lt;/$reveal&gt;\n\n&lt;$reveal state=&lt;&lt;tbl-col-hidden-state&gt;&gt; type=\&quot;nomatch\&quot; text=\&quot;true\&quot; default=\&quot;false\&quot;&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;tbl-col&gt;&gt; $index=\&quot;tbl-col-hidden\&quot; $value=\&quot;true\&quot; /&gt;\n&lt;$action-listops $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=\&quot;tbl-list-hidden\&quot; $subfilter=&lt;&lt;tbl-col-id&gt;&gt; /&gt;\n&lt;/$reveal&gt;\n\n&lt;/$checkbox&gt;\n&lt;/$button&gt;\n&lt;/$list&gt;\n&lt;&lt;&lt;\n\n&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/hide-show-col&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310623&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170518152407734&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/last-page&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-last-page()\n&lt;$action-setfield $tiddler=\&quot;\&quot;\&quot;$(tbl-start-row)$\&quot;\&quot;\&quot; text={{{[tag[$(tbl-name)$]last{$(tbl-max-rows)$}first[]]}}} /&gt;\n\\end\n\n&lt;!----------------\n-- \&quot;Last-Page\&quot; control\n--&gt;\n&lt;$button actions=&lt;&lt;tbl-last-page&gt;&gt; &gt;\n{{$:/core/images/chevron-right}}\n&lt;/$button&gt;\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/last-page&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;select-all&quot;: &quot;false&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310615&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180819165727217&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/new-column&quot;: {
+            &quot;text&quot;: &quot;&lt;!--------------------\n-- \&quot;New column\&quot; control\n--&gt;\n&lt;$button&gt;\nNew column\n&lt;$action-sendmessage $message=\&quot;tm-modal\&quot; $param=\&quot;$:/plugins/mau/TableTool/modals/column-dialog\&quot; tbl-conf=&lt;&lt;tbl-conf&gt;&gt; tbl-name=&lt;&lt;tbl-name&gt;&gt; tbl-set-column-properties=&lt;&lt;tbl-set-column-properties&gt;&gt;/&gt;\n&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-column\&quot; type=\&quot;application/x-tiddler-dictionary\&quot; text=&lt;&lt;tbl-new-column-defaults&gt;&gt; tbl-col-id-enabled=\&quot;enabled\&quot; /&gt;\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/new-column&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310608&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170416205039818&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/new-row&quot;: {
+            &quot;text&quot;: &quot;\\define check-key-list() \n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;!-- $list filter=\&quot;\&quot;\&quot;[&lt;tbl-col-id&gt;addprefix[/]addprefix&lt;tbl-conf&gt;tbl-key[yes]]\&quot;\&quot;\&quot; variable=\&quot;tbl-col\&quot; --&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[&lt;tbl-col&gt;tbl-key[yes]]\&quot;\&quot;\&quot; variable=\&quot;tbl-col\&quot;&gt;\n&lt;$set name=\&quot;k\&quot; tiddler=\&quot;$:/temp/tbl/new-row\&quot; index=&lt;&lt;tbl-col-id&gt;&gt; &gt;\n&lt;$set name=\&quot;chk\&quot; filter=\&quot;\&quot;\&quot;[enlist&lt;k&gt;]\&quot;\&quot;\&quot; value=\&quot;\&quot; emptyValue=\&quot;x\&quot;&gt;&lt;&lt;chk&gt;&gt;&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n\\end\n\n\\define check-key()\n&lt;$wikify name=\&quot;chk\&quot; text=&lt;&lt;check-key-list&gt;&gt; &gt;\n&lt;$set name=\&quot;go\&quot; filter=\&quot;\&quot;\&quot;[enlist&lt;chk&gt;]\&quot;\&quot;\&quot; value=\&quot;do-not-set-new-row\&quot; emptyValue=\&quot;ok-to-set-new-row\&quot;&gt;\n&lt;$macrocall $name=&lt;&lt;go&gt;&gt; /&gt;\n&lt;/$set&gt;\n&lt;/$wikify&gt;\n\\end\n\n\\define ok-to-set-new-row()\n&lt;$button message=\&quot;tm-close-tiddler\&quot; actions=&lt;&lt;tbl-set-new-row&gt;&gt; &gt;{{$:/core/images/done-button}}&lt;/$button&gt;\n\\end\n\n\\define tbl-set-new-row()\n&lt;$set name=\&quot;id\&quot; value=&lt;&lt;now \&quot;YYYY0MM0DD0hh0mm0ss\&quot;&gt;&gt; &gt;\n&lt;$wikify name=\&quot;tbl-row-id\&quot; text=&lt;&lt;tbl-row-id&gt;&gt; &gt;\n\n&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-row\&quot; title=&lt;&lt;tbl-row-id&gt;&gt; /&gt;\n&lt;$action-listops $tiddler=&lt;&lt;tbl-row-id&gt;&gt; $tags=\&quot;\&quot;\&quot;[&lt;tbl-name&gt;]\&quot;\&quot;\&quot; /&gt;\n\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;tbl-row-id&gt;&gt; $field=&lt;&lt;tbl-col-id&gt;&gt; $value=\&quot;tbl-td-edit\&quot; /&gt;\n&lt;/$list&gt;\n\n&lt;/$wikify&gt;\n&lt;/$set&gt;\n\\end\n\n&lt;!---------------------\n-- \&quot;New record\&quot; control\n--\n-- To enable the \&quot;New row\&quot; dialog:\n-- * uncomment the $action-sendmessage widget version\n-- * comment out the subsequent &lt;&lt;tbl-set-new-row&gt;&gt; macro call version\n--&gt;\n&lt;!-- start of $action-sendmessage widget version --\n&lt;$button&gt;\nNew row\n&lt;$action-sendmessage $message=\&quot;tm-modal\&quot; $param=\&quot;$:/plugins/mau/TableTool/modals/row-dialog\&quot; currentTiddler=\&quot;$:/temp/tbl/new-row\&quot; tbl-name=&lt;&lt;tbl-name&gt;&gt; tbl-layout=&lt;&lt;tbl-layout&gt;&gt; check-key=&lt;&lt;check-key&gt;&gt; check-key-list=&lt;&lt;check-key-list&gt;&gt; ok-to-set-new-row=&lt;&lt;ok-to-set-new-row&gt;&gt; tbl-set-new-row=&lt;&lt;tbl-set-new-row&gt;&gt; /&gt; \n&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-row\&quot; type=\&quot;application/json\&quot; text=\&quot;\&quot; /&gt;\n&lt;/$button&gt;\n-- end of $action-sendmessage widget version --&gt;\n&lt;!-- start of &lt;&lt;tbl-set-new-row&gt;&gt; macro call version --&gt;\n&lt;$button actions=&lt;&lt;tbl-set-new-row&gt;&gt; &gt;\nNew row\n&lt;/$button&gt;\n&lt;!-- end of &lt;&lt;tbl-set-new-row&gt;&gt; macro call version --&gt;\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/new-row&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310601&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170412093519250&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/next-page&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-next-page()\n&lt;$action-setfield $tiddler=\&quot;\&quot;\&quot;$(tbl-start-row)$\&quot;\&quot;\&quot; text={{{[tag[$(tbl-name)$]allafter&lt;start-row&gt;first{$(tbl-max-rows)$}last[]]}}} /&gt;\n\\end\n\n&lt;!----------------\n-- \&quot;Next-Page\&quot; control\n--&gt;\n&lt;$button actions=&lt;&lt;tbl-next-page&gt;&gt; &gt;\n{{$:/core/images/right-arrow}}\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/next-page&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;select-all&quot;: &quot;false&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310593&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180116215350089&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/prev-page&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-prev-page()\n&lt;$action-setfield $tiddler=\&quot;\&quot;\&quot;$(tbl-start-row)$\&quot;\&quot;\&quot; text={{{[tag[$(tbl-name)$]allbefore&lt;start-row&gt;last{$(tbl-max-rows)$}first[]]}}} /&gt;\n\\end\n\n&lt;!----------------\n-- \&quot;Prev-Page\&quot; control\n--&gt;\n&lt;$button actions=&lt;&lt;tbl-prev-page&gt;&gt; &gt;\n{{$:/core/images/left-arrow}}\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/prev-page&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;select-all&quot;: &quot;false&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310585&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180404134354633&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/reset&quot;: {
+            &quot;text&quot;: &quot;&lt;!----------------\n-- \&quot;Reset\&quot; control\n--&gt;\n&lt;$button&gt;\nReset\n&lt;$list filter=\&quot;\&quot;\&quot;[tag&lt;tbl-name&gt;]\&quot;\&quot;\&quot;&gt;\n&lt;$action-setfield selected=\&quot;false\&quot; /&gt;\n\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;] -[list&lt;tbl-list-hidden&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;$action-setfield $field=&lt;&lt;tbl-col-id&gt;&gt; $value=\&quot;tbl-td-view\&quot; /&gt;\n&lt;/$list&gt;\n\n&lt;/$list&gt;\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/reset&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;select-all&quot;: &quot;false&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310578&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170414143029421&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/controls/rows-per-page&quot;: {
+            &quot;text&quot;: &quot;&lt;!----------------\n-- \&quot;Rows-per-Page\&quot; control\n--&gt;\nRows per page: \n&lt;$select tiddler=&lt;&lt;tbl-max-rows&gt;&gt; default=\&quot;30\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;10 20 30 40 50 60 70 80 90 100\&quot;\&quot;\&quot; variable=\&quot;n\&quot;&gt;\n&lt;option&gt;&lt;&lt;n&gt;&gt;&lt;/option&gt;\n&lt;/$list&gt;\n&lt;/$select&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/controls/rows-per-page&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblControl TableToolPlugin&quot;,
+            &quot;select-all&quot;: &quot;false&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310569&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180819164558301&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/head-menu/col-properties&quot;: {
+            &quot;text&quot;: &quot;&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\nChange column properties\n&lt;$action-sendmessage $message=\&quot;tm-modal\&quot; $param=\&quot;$:/plugins/mau/TableTool/modals/column-dialog\&quot; tbl-conf=&lt;&lt;tbl-conf&gt;&gt; tbl-name=&lt;&lt;tbl-name&gt;&gt; tbl-set-column-properties=&lt;&lt;tbl-set-column-properties&gt;&gt;/&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;tbl-col&gt;&gt; title=\&quot;$:/temp/tbl/new-column\&quot; /&gt;\n&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-column\&quot; $index=\&quot;tbl-column-order\&quot; $value={{{[list&lt;tbl-conf&gt;after&lt;tbl-col-id&gt;]}}} /&gt;\n&lt;/$button&gt;\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/head-menu/col-properties&quot;,
+            &quot;tags&quot;: &quot;$:/tags/thvHeadMenu TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015194322705&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170517195222349&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/head-menu/sort&quot;: {
+            &quot;text&quot;: &quot;&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\nSort by this column\n&lt;/$button&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/head-menu/sort&quot;,
+            &quot;tags&quot;: &quot;$:/tags/thvHeadMenu TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015194350720&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170517195608152&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/display-controls&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-display-controls()\n&lt;$list filter=\&quot;\&quot;\&quot;[all[shadows+tiddlers]tag[$:/tags/tblControl]!has[draft.of]]\&quot;\&quot;\&quot; variable=\&quot;tbl-control\&quot;&gt;\n&lt;$transclude tiddler=&lt;&lt;tbl-control&gt;&gt; /&gt;\n&lt;/$list&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/display-controls&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin $:/tags/tblMacro&quot;,
+            &quot;modified&quot;: &quot;20181016210910173&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;created&quot;: &quot;20171030010641601&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/new-column-defaults&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-new-column-defaults()\ntbl-td-view:&lt;&lt;tdvShowVal&gt;&gt;\ntbl-td-edit:&lt;&lt;tdeInputVal&gt;&gt;\ntbl-th-view:&lt;&lt;thvHeadMenu&gt;&gt;\ntbl-th-edit:\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/new-column-defaults&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311373&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170415223200010&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/open-column-defaults&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-open-column-defaults()\ntbl-td-view:&lt;&lt;tdvOpenThis&gt;&gt;\ntbl-td-edit:&lt;&lt;tdvOpenThis&gt;&gt;\ntbl-th-view:\ntbl-th-edit:\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/open-column-defaults&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311366&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170417213415279&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/select-column-defaults&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-select-column-defaults()\ntbl-td-view:&lt;&lt;tdvSelectThis&gt;&gt;\ntbl-td-edit:&lt;&lt;tdvSelectThis&gt;&gt;\ntbl-th-view:&lt;&lt;thvSelectAll&gt;&gt;\ntbl-th-edit:&lt;&lt;thvSelectAll&gt;&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/select-column-defaults&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311359&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170417213344727&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/set-column-properties&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-set-column-properties()\n&lt;$set name=\&quot;nc\&quot; value={{$:/temp/tbl/new-column##tbl-col-id}} &gt;\n\n&lt;$reveal state=\&quot;$:/temp/tbl/new-column##tbl-col-label\&quot; type=\&quot;match\&quot; text=\&quot;\&quot; default=\&quot;\&quot;&gt;\n&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-column\&quot; $index=\&quot;tbl-col-label\&quot; $value=&lt;&lt;nc&gt;&gt; /&gt;\n&lt;/$reveal&gt;\n\n&lt;$set name=\&quot;tbl-column-before\&quot; value={{$:/temp/tbl/new-column##tbl-column-order}}&gt;\n&lt;$action-listops $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=\&quot;list\&quot; $subfilter=\&quot;\&quot;\&quot;+[insertbefore:tbl-column-before&lt;nc&gt;]\&quot;\&quot;\&quot; /&gt;\n&lt;/$set&gt;\n\n&lt;$reveal state=\&quot;$:/temp/tbl/new-column##tbl-col-hidden\&quot; type=\&quot;match\&quot; text=\&quot;true\&quot; default=\&quot;false\&quot;&gt;\n&lt;$action-listops $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=\&quot;tbl-list-hidden\&quot; $subfilter=&lt;&lt;nc&gt;&gt; /&gt;\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/temp/tbl/new-column##tbl-col-hidden\&quot; type=\&quot;nomatch\&quot; text=\&quot;true\&quot; default=\&quot;false\&quot;&gt;\n&lt;$action-listops $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=\&quot;tbl-list-hidden\&quot; $subfilter=\&quot;\&quot;\&quot;-[&lt;nc&gt;]\&quot;\&quot;\&quot; /&gt;\n&lt;/$reveal&gt;\n\n&lt;!-- $action-listops $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=\&quot;list\&quot; $subfilter=&lt;&lt;nc&gt;&gt; / --&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;tbl-conf&gt;&gt; $field=&lt;&lt;nc&gt;&gt; $value=\&quot;tbl-th-view\&quot; /&gt;\n\n&lt;$list filter=\&quot;\&quot;\&quot;[&lt;tbl-conf&gt;] +[addsuffix[/]] +[addsuffix&lt;nc&gt;]\&quot;\&quot;\&quot;&gt;\n&lt;!-- $action-setfield type=\&quot;application/x-tiddler-dictionary\&quot; text=&lt;&lt;tbl-new-column-defaults&gt;&gt; / --&gt;\n&lt;!-- $action-setfield type=\&quot;application/x-tiddler-dictionary\&quot; caption={{$:/temp/tbl/new-column##tbl-col-label}} / --&gt;\n&lt;$action-setfield $index=\&quot;tbl-col-id\&quot; $value={{$:/temp/tbl/new-column##tbl-col-id}} /&gt;\n&lt;$action-setfield $index=\&quot;tbl-col-label\&quot; $value={{$:/temp/tbl/new-column##tbl-col-label}} /&gt;\n&lt;$action-setfield $index=\&quot;tbl-td-view\&quot; $value={{$:/temp/tbl/new-column##tbl-td-view}} /&gt;\n&lt;$action-setfield $index=\&quot;tbl-td-edit\&quot; $value={{$:/temp/tbl/new-column##tbl-td-edit}} /&gt;\n&lt;$action-setfield $index=\&quot;tbl-th-view\&quot; $value={{$:/temp/tbl/new-column##tbl-th-view}} /&gt;\n&lt;$action-setfield $index=\&quot;tbl-th-edit\&quot; $value={{$:/temp/tbl/new-column##tbl-th-edit}} /&gt;\n&lt;$action-setfield $index=\&quot;tbl-col-hidden\&quot; $value={{$:/temp/tbl/new-column##tbl-col-hidden}} /&gt;\n&lt;/$list&gt;\n\n&lt;$list filter=\&quot;\&quot;\&quot;[tag&lt;tbl-name&gt;]\&quot;\&quot;\&quot;&gt;\n&lt;$action-setfield $field=&lt;&lt;nc&gt;&gt; $value=\&quot;tbl-td-view\&quot; /&gt;\n&lt;/$list&gt;\n\n&lt;/$set&gt;\n&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-column\&quot; text=\&quot;\&quot; /&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/set-column-properties&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311351&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170414203525718&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/start-row&quot;: {
+            &quot;text&quot;: &quot;\\define start-row()\n&lt;$set name=\&quot;sr\&quot; filter=\&quot;\&quot;\&quot;[enlist{$(tbl-start-row)$}]\&quot;\&quot;\&quot; value={{$(tbl-start-row)$}} emptyValue={{{[tag[$(tbl-name)$]first[]]}}} &gt;&lt;&lt;sr&gt;&gt;&lt;/$set&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/start-row&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311343&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180819143414983&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/table-tool&quot;: {
+            &quot;text&quot;: &quot;\\define table-tool(tbl-name, tbl-layout:\&quot;default\&quot;, tbl-controls:\&quot;show\&quot;)\n&lt;$vars tbl-name=\&quot;\&quot;\&quot;$tbl-name$\&quot;\&quot;\&quot; tbl-layout=\&quot;\&quot;\&quot;$tbl-layout$\&quot;\&quot;\&quot; tbl-controls=\&quot;\&quot;\&quot;$tbl-controls$\&quot;\&quot;\&quot;&gt;\n{{||$:/plugins/mau/TableTool/templates/table-template}}\n&lt;/$vars&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/table-tool&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Macro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181011101830789&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170415230904595&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/edit-date&quot;: {
+            &quot;text&quot;: &quot;\\define tdeEditDate(ef:\&quot;YYYY-MM-DD\&quot;, vf:\&quot;YYYY-MM-DD\&quot;, st, ss, s24)\n&lt;$edit-date index=$(tbl-col-id)$ firstDay=\&quot;1\&quot; format=\&quot;\&quot;\&quot;$ef$\&quot;\&quot;\&quot; fieldFormat=\&quot;\&quot;\&quot;$vf$\&quot;\&quot;\&quot; $st$ $ss$ $s24$/&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot; set=\&quot;!!$(tbl-col-id)$\&quot; setTo=\&quot;tbl-td-view\&quot;&gt;\n&lt;small&gt;{{$:/core/images/close-button}}&lt;/small&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/edit-date&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311336&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170427165209789&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/edit-row-id&quot;: {
+            &quot;text&quot;: &quot;\\define tdeEditRowID()\n&lt;$edit-text index=\&quot;$(tbl-col-id)$\&quot; tag=\&quot;input\&quot;/&gt;\n&lt;$reveal state=\&quot;\&quot;\&quot;##$(tbl-col-id)$\&quot;\&quot;\&quot; type=\&quot;nomatch\&quot; text=\&quot;\&quot; &gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n&lt;small&gt;{{$:/core/images/done-button}}&lt;/small&gt;\n&lt;$action-setfield $(tbl-col-id)$=\&quot;tbl-td-view\&quot; title={{##$(tbl-col-id)$}} /&gt;\n&lt;$action-deletetiddler $tiddler=&lt;&lt;currentTiddler&gt;&gt; /&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n&lt;small&gt;{{$:/core/images/close-button}}&lt;/small&gt;\n&lt;$action-setfield $(tbl-col-id)$=\&quot;tbl-td-view\&quot; $index=\&quot;\&quot;\&quot;$(tbl-col-id)$\&quot;\&quot;\&quot; $value={{!!title}} /&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/edit-row-id&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311329&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180821134735927&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/edit-val&quot;: {
+            &quot;text&quot;: &quot;\\define tdeEditVal()\n&lt;$edit-text index=$(tbl-col-id)$ tag=\&quot;textarea\&quot;/&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot; set=\&quot;!!$(tbl-col-id)$\&quot; setTo=\&quot;tbl-td-view\&quot;&gt;\n&lt;small&gt;{{$:/core/images/close-button}}&lt;/small&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/edit-val&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311322&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170411161750906&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/input-val&quot;: {
+            &quot;text&quot;: &quot;\\define tdeInputVal()\n&lt;$edit-text index=$(tbl-col-id)$ tag=\&quot;input\&quot;/&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot; set=\&quot;!!$(tbl-col-id)$\&quot; setTo=\&quot;tbl-td-view\&quot;&gt;\n&lt;small&gt;{{$:/core/images/close-button}}&lt;/small&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/input-val&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311314&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170412091708009&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/open-this&quot;: {
+            &quot;text&quot;: &quot;\\define tdvOpenThis()\n&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n&lt;small&gt;{{$:/core/images/open-window}}&lt;/small&gt;\n&lt;$action-navigate/&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/open-this&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311306&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170412084142938&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/select-this&quot;: {
+            &quot;text&quot;: &quot;\\define tdvSelectThis()\n&lt;$checkbox field=\&quot;selected\&quot; checked=\&quot;true\&quot; unchecked=\&quot;false\&quot; /&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/select-this&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311298&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170412084830861&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/select-val&quot;: {
+            &quot;text&quot;: &quot;\\define tdeSelectVal()\n&lt;$select index=\&quot;$(tbl-col-id)$\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[tag&lt;tbl-col&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-select-opt\&quot;&gt;\n&lt;option&gt;&lt;&lt;tbl-select-opt&gt;&gt;&lt;/option&gt;\n&lt;/$list&gt;\n&lt;/$select&gt;\n&lt;$button class=\&quot;tc-btn-invisible\&quot; set=\&quot;!!$(tbl-col-id)$\&quot; setTo=\&quot;tbl-td-view\&quot;&gt;\n&lt;small&gt;{{$:/core/images/close-button}}&lt;/small&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/select-val&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311291&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170411161845759&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/show-row-id&quot;: {
+            &quot;text&quot;: &quot;\\define tdvShowRowID()\n&lt;$button class=\&quot;tc-btn-invisible\&quot; style=\&quot;text-align: left;\&quot;&gt;\n{{!!title}}\n&lt;$action-setfield $(tbl-col-id)$=\&quot;tbl-td-edit\&quot; $index=\&quot;\&quot;\&quot;$(tbl-col-id)$\&quot;\&quot;\&quot; $value={{!!title}} /&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/show-row-id&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311283&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180829205909030&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/show-tags&quot;: {
+            &quot;text&quot;: &quot;\\define tdvShowTags()\n&lt;$list filter=\&quot;\&quot;\&quot;[&lt;currentTiddler&gt;tags[]sort[title]] -[&lt;tbl-name&gt;]\&quot;\&quot;\&quot; template=\&quot;$:/core/ui/TagTemplate\&quot; storyview=\&quot;pop\&quot;/&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/show-tags&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311274&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170412085145262&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/td/show-val&quot;: {
+            &quot;text&quot;: &quot;\\define tdvShowVal()\n&lt;$button class=\&quot;tc-btn-invisible\&quot; style=\&quot;text-align: left;\&quot; set=\&quot;!!$(tbl-col-id)$\&quot; setTo=\&quot;tbl-td-edit\&quot;&gt;\n&lt;$wikify name=\&quot;val\&quot; text={{##$(tbl-col-id)$}} output=\&quot;html\&quot;&gt;&lt;&lt;val&gt;&gt;&lt;/$wikify&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/td/show-val&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311266&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170411161423687&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/th/head-menu&quot;: {
+            &quot;text&quot;: &quot;\\define thvHeadMenu()\n&lt;$set name=\&quot;tbl-head-menu-qualifier\&quot; value=&lt;&lt;qualify \&quot;\&quot;\&quot;$(tbl-col-id)$\&quot;\&quot;\&quot;&gt;&gt; &gt;\n&lt;$set name=\&quot;tbl-head-menu-state\&quot; filter=\&quot;\&quot;\&quot;[[$:/state/tbl/]] +[addsuffix&lt;tbl-head-menu-qualifier&gt;]\&quot;\&quot;\&quot; &gt;\n&lt;$button popup=&lt;&lt;tbl-head-menu-state&gt;&gt; class=\&quot;tc-btn-invisible\&quot;&gt;\n{{$(tbl-col)$##tbl-col-label}}\n&lt;/$button&gt;\n\n&lt;$reveal type=\&quot;popup\&quot; position=\&quot;below\&quot; state=&lt;&lt;tbl-head-menu-state&gt;&gt; &gt;\n&lt;div class=\&quot;tc-drop-down\&quot;&gt;\n\n&lt;&lt;&lt;\n&lt;$list filter=\&quot;\&quot;\&quot;[all[shadows+tiddlers]tag[$:/tags/thvHeadMenu]!has[draft.of]]\&quot;\&quot;\&quot; variable=\&quot;tbl-head-menu-item\&quot;&gt;\n&lt;$transclude tiddler=&lt;&lt;tbl-head-menu-item&gt;&gt; /&gt;&lt;br&gt;\n&lt;/$list&gt;\n&lt;&lt;&lt;\n\n&lt;/div&gt;\n&lt;/$reveal&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/th/head-menu&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181016211027400&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170418101615496&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/th/select-all&quot;: {
+            &quot;text&quot;: &quot;\\define thvSelectAll()\n&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n&lt;$checkbox field=\&quot;select-all\&quot; checked=\&quot;true\&quot; unchecked=\&quot;false\&quot; /&gt;\n&lt;$reveal state=\&quot;!!select-all\&quot; type=\&quot;nomatch\&quot; text=\&quot;true\&quot;&gt;\n&lt;$action-setfield select-all=\&quot;true\&quot;/&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[tag&lt;tbl-name&gt;]\&quot;\&quot;\&quot;&gt;&lt;$action-setfield selected=\&quot;true\&quot;/&gt;&lt;/$list&gt;\n&lt;/$reveal&gt;\n&lt;$reveal state=\&quot;!!select-all\&quot; type=\&quot;match\&quot; text=\&quot;true\&quot;&gt;\n&lt;$action-setfield select-all=\&quot;false\&quot;/&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[tag&lt;tbl-name&gt;]\&quot;\&quot;\&quot;&gt;&lt;$action-setfield selected=\&quot;false\&quot;/&gt;&lt;/$list&gt;\n&lt;/$reveal&gt;\n&lt;/$button&gt;\n\\end&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/th/select-all&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015200311249&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170412090003168&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/macros/variables&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-plugin() $:/plugins/mau/TableTool\n\\define tbl-row() $(tbl-plugin)$/templates/row-template\n\\define tbl-conf() $(tbl-conf-prefix)$/$(tbl-name)$/$(tbl-layout)$\n\\define tbl-list-hidden() $(tbl-conf)$!!tbl-list-hidden\n\\define tbl-col() $(tbl-conf)$/$(tbl-col-id)$\n\\define tbl-mode-filter() [&lt;currentTiddler&gt;regexp:$(tbl-col-id)$[^tbl-th.*]]\n\n\\define tbl-max-rows() $(tbl-plugin)$/config/tbl-max-rows\n\\define tbl-start-row() $:/state/tbl/$(tbl-name)$/start-row\n\n\\define tbl-conf-prefix() {{$(tbl-plugin)$/config/tbl-conf-prefix}}\n\\define tbl-mode() {{!!$(tbl-col-id)$}}\n\\define tbl-col-width() {{$(tbl-col)$##tbl-col-width}}\n\n&lt;!-- this variables have to be wikified: \&quot;\&quot;\&quot;&lt;$wikify name=\&quot;macro\&quot; text=&lt;&lt;macro&gt;&gt; &gt;\&quot;\&quot;\&quot; --&gt;\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/macros/variables&quot;,
+            &quot;tags&quot;: &quot;$:/tags/tblMacro TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015204218993&quot;,
+            &quot;list&quot;: &quot;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170519160134098&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/modals/column-dialog&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-col-id-enabled()\n&lt;$reveal state=\&quot;$:/temp/tbl/new-column!!tbl-col-id-enabled\&quot; type=\&quot;match\&quot; text=\&quot;enabled\&quot; default=\&quot;disabled\&quot;&gt;\n&lt;$edit-text tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-col-id\&quot; tag=\&quot;input\&quot; placeholder=\&quot;column-id\&quot; /&gt;\n&lt;/$reveal&gt;\n&lt;$reveal state=\&quot;$:/temp/tbl/new-column!!tbl-col-id-enabled\&quot; type=\&quot;nomatch\&quot; text=\&quot;enabled\&quot; default=\&quot;disabled\&quot;&gt;\n{{$:/temp/tbl/new-column##tbl-col-id}}\n&lt;/$reveal&gt;\n\\end\n\n\\define tbl-column-order()\n&lt;$select tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-column-order\&quot; default=\&quot;\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-current-column\&quot;&gt;\n&lt;option&gt;&lt;&lt;tbl-current-column&gt;&gt;&lt;/option&gt;\n&lt;/$list&gt;\n&lt;option value=\&quot;\&quot; selected=\&quot;selected\&quot;&gt;place at the end&lt;/option&gt;\n&lt;/$select&gt;\n\\end\n\n&lt;!----------------------------\n-- \&quot;Column properties\&quot; dialog\n--&gt;\n\n|Column ID|&lt;&lt;tbl-col-id-enabled&gt;&gt;|\n|Column label|&lt;$edit-text tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-col-label\&quot; tag=\&quot;input\&quot; placeholder=\&quot;Column Label\&quot; /&gt;|\n|Column data view|&lt;$edit-text tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-td-view\&quot; tag=\&quot;input\&quot; /&gt;|\n|Column data edit|&lt;$edit-text tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-td-edit\&quot; tag=\&quot;input\&quot; /&gt;|\n|Column header view|&lt;$edit-text tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-th-view\&quot; tag=\&quot;input\&quot; /&gt;|\n|Column header edit|&lt;$edit-text tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-th-edit\&quot; tag=\&quot;input\&quot; /&gt;|\n|Column position|&lt;&lt;tbl-column-order&gt;&gt;|\n|Column hidden|&lt;$checkbox tiddler=\&quot;$:/temp/tbl/new-column\&quot; index=\&quot;tbl-col-hidden\&quot; checked=\&quot;true\&quot; unchecked=\&quot;false\&quot; default=\&quot;false\&quot; /&gt;|\n|noBorder|k\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/modals/column-dialog&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;subtitle&quot;: &quot;Column properties&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181011101830876&quot;,
+            &quot;footer&quot;: &quot;&lt;$reveal state=\&quot;$:/temp/tbl/new-column##tbl-col-id\&quot; type=\&quot;nomatch\&quot; text=\&quot;\&quot;&gt;&lt;$button message=\&quot;tm-close-tiddler\&quot; actions=&lt;&lt;tbl-set-column-properties&gt;&gt; &gt;{{$:/core/images/done-button}}&lt;/$button&gt;&lt;/$reveal&gt;&lt;$button message=\&quot;tm-close-tiddler\&quot;&gt;{{$:/core/images/close-button}}&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-column\&quot; text=\&quot;\&quot; /&gt;&lt;/$button&gt;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170510053211490&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/modals/row-dialog&quot;: {
+            &quot;text&quot;: &quot;&lt;$importvariables filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/tblMacro]!has[draft.of]]\&quot;&gt;\n&lt;$wikify name=\&quot;tbl-conf-prefix\&quot; text=&lt;&lt;tbl-conf-prefix&gt;&gt; &gt;\n&lt;$tiddler tiddler=\&quot;$:/temp/tbl/new-row\&quot;&gt;\n\n&lt;!----------------------------\n-- \&quot;Row\&quot; dialog\n--&gt;\n\n&lt;table class=\&quot;noBorder\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[&lt;tbl-col&gt;tbl-key[yes]]\&quot;\&quot;\&quot; variable=\&quot;tbl-col\&quot;&gt;\n&lt;tr&gt;\n&lt;td&gt;&lt;$transclude tiddler=&lt;&lt;tbl-col&gt;&gt; index=\&quot;tbl-col-label\&quot; /&gt;&lt;/td&gt;\n&lt;td&gt;&lt;$transclude tiddler=&lt;&lt;tbl-col&gt;&gt; index=\&quot;tbl-td-edit\&quot; /&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/$list&gt;\n&lt;/$list&gt;\n&lt;/table&gt;\n\n&lt;/$tiddler&gt;\n&lt;/$wikify&gt;\n&lt;/$importvariables&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/modals/row-dialog&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;subtitle&quot;: &quot;Edit row&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181016211200888&quot;,
+            &quot;footer&quot;: &quot;&lt;$importvariables filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/tblMacro]!has[draft.of]]\&quot;&gt;&lt;$wikify name=\&quot;tbl-conf-prefix\&quot; text=&lt;&lt;tbl-conf-prefix&gt;&gt; &gt;&lt;&lt;check-key&gt;&gt;&lt;/$wikify&gt;&lt;/$importvariables&gt;&lt;$button message=\&quot;tm-close-tiddler\&quot;&gt;{{$:/core/images/close-button}}&lt;$action-setfield $tiddler=\&quot;$:/temp/tbl/new-row\&quot; text=\&quot;\&quot; /&gt;&lt;/$button&gt;&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20180821081510349&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/templates/row-template&quot;: {
+            &quot;text&quot;: &quot;\\define tbl-show-column()\n&lt;$(tbl-mode-tag)$ style=\&quot;min-width:$(tbl-col-width)$;\&quot;&gt;&lt;$transclude tiddler=&lt;&lt;tbl-col&gt;&gt; index=&lt;&lt;tbl-mode&gt;&gt; /&gt;&lt;/$(tbl-mode-tag)$&gt;\n\\end\n\n&lt;tr&gt;\n&lt;$list filter=\&quot;\&quot;\&quot;[list&lt;tbl-conf&gt;] -[list&lt;tbl-list-hidden&gt;]\&quot;\&quot;\&quot; variable=\&quot;tbl-col-id\&quot;&gt;\n&lt;$wikify name=\&quot;tbl-mode\&quot; text=&lt;&lt;tbl-mode&gt;&gt; &gt;\n&lt;$wikify name=\&quot;tbl-col-width\&quot; text=&lt;&lt;tbl-col-width&gt;&gt; &gt;\n&lt;$set name=\&quot;tbl-mode-tag\&quot; filter=&lt;&lt;tbl-mode-filter&gt;&gt; value=\&quot;th\&quot; emptyValue=\&quot;td\&quot;&gt;\n&lt;&lt;tbl-show-column&gt;&gt;\n&lt;/$set&gt;\n&lt;/$wikify&gt;\n&lt;/$wikify&gt;\n&lt;/$list&gt;\n&lt;/tr&gt;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;tmap.id&quot;: &quot;b6706133-9f74-473f-beee-ae7beba59433&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/templates/row-template&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181011101830862&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170418162629326&quot;
+        },
+        &quot;$:/plugins/mau/TableTool/templates/table-template&quot;: {
+            &quot;text&quot;: &quot;&lt;$importvariables filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/tblMacro]!has[draft.of]]\&quot;&gt;\n\n&lt;$wikify name=\&quot;tbl-conf-prefix\&quot; text=&lt;&lt;tbl-conf-prefix&gt;&gt; &gt;\n&lt;$wikify name=\&quot;start-row\&quot; text=&lt;&lt;start-row&gt;&gt; &gt;\n\n&lt;$set name=\&quot;display\&quot; filter=\&quot;\&quot;\&quot;[enlist&lt;tbl-controls&gt;] -[[show]]\&quot;\&quot;\&quot; value=\&quot;\&quot; emptyValue=\&quot;tbl-display-controls\&quot;&gt;\n&lt;$macrocall $name=&lt;&lt;display&gt;&gt; /&gt;\n&lt;/$set&gt;\n\n&lt;$tiddler tiddler=&lt;&lt;tbl-conf&gt;&gt; &gt;\n\n&lt;table class=\&quot;tbl\&quot;&gt;\n&lt;!-- header --&gt;\n&lt;$transclude tiddler=&lt;&lt;tbl-row&gt;&gt; /&gt;\n&lt;!-- data --&gt;\n&lt;$list filter=&lt;&lt;tbl-filter&gt;&gt; template=&lt;&lt;tbl-row&gt;&gt; /&gt;\n&lt;/table&gt;\n\n&lt;/$tiddler&gt;\n\n&lt;/$wikify&gt;\n&lt;/$wikify&gt;\n\n&lt;/$importvariables&gt;\n&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;tmap.id&quot;: &quot;b50e9bd4-f5a3-445d-affc-80ddc2ac39ff&quot;,
+            &quot;title&quot;: &quot;$:/plugins/mau/TableTool/templates/table-template&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181016211240262&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170417221320425&quot;
+        },
+        &quot;$:/tags/tblControl&quot;: {
+            &quot;text&quot;: &quot;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/tags/tblControl&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modifier&quot;: &quot;)+(auloop&quot;,
+            &quot;modified&quot;: &quot;20181015201310653&quot;,
+            &quot;list&quot;: &quot;$:/plugins/mau/TableTool/controls/new-column $:/plugins/mau/TableTool/controls/new-row $:/plugins/mau/TableTool/controls/edit-selected $:/plugins/mau/TableTool/controls/delete-selected $:/plugins/mau/TableTool/controls/reset $:/plugins/mau/TableTool/controls/hide-show-col $:/plugins/mau/TableTool/controls/first-page $:/plugins/mau/TableTool/controls/prev-page $:/plugins/mau/TableTool/controls/rows-per-page $:/plugins/mau/TableTool/controls/next-page $:/plugins/mau/TableTool/controls/last-page&quot;,
+            &quot;creator&quot;: &quot;)+(auloop&quot;,
+            &quot;created&quot;: &quot;20170415231403552&quot;
+        },
+        &quot;$:/tags/tblMacro&quot;: {
+            &quot;text&quot;: &quot;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/tags/tblMacro&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modified&quot;: &quot;20181015200311226&quot;,
+            &quot;created&quot;: &quot;20180930165041550&quot;
+        },
+        &quot;$:/tags/thvHeadMenu&quot;: {
+            &quot;text&quot;: &quot;&quot;,
+            &quot;bag&quot;: &quot;default&quot;,
+            &quot;revision&quot;: &quot;0&quot;,
+            &quot;type&quot;: &quot;text/vnd.tiddlywiki&quot;,
+            &quot;title&quot;: &quot;$:/tags/thvHeadMenu&quot;,
+            &quot;tags&quot;: &quot;TableToolPlugin&quot;,
+            &quot;modified&quot;: &quot;20181015194734944&quot;,
+            &quot;created&quot;: &quot;20180930111254842&quot;
+        }
+    }
+}</pre>
+</div>
 <div author="NicolasPetton" bag="default" core-version="&gt;=5.1.22" dependents="" description="JavaScript hooks for mobile devices support of the Notebook theme" list="" name="Mobile support for the Notebook theme" plugin-type="plugin" revision="0" source="https://github.com/NicolasPetton/Notebook" title="$:/plugins/nico/notebook-mobile" type="application/json" version="1.0.0">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -12569,7 +13152,7 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210526214809199" list="[[GrowRuck SLT]] [[The Steve]]" modified="20210526215716023" title="$:/StoryList">
+<div created="20210526214809199" list="$:/Import [[GrowRuck SLT]] [[The Steve]]" modified="20210526215716023" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20201211110239190" modified="20201211110239238" revision="0" title="$:/theme" type="text/vnd.tiddlywiki">
