@@ -145,15 +145,11 @@ Error message and password prompt
 
 <li>$:/config/DefaultSidebarTab</li>
 
-<li>$:/config/DragAndDrop/Enable</li>
-
 <li>$:/config/KookmaPluginLibrary</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/plugins/aaldrich/tables/button</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/plugins/kookma/utility/ui/Buttons/ViewFields</li>
-
-<li>$:/config/utility/author</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit</li>
 
@@ -472,9 +468,6 @@ Error message and password prompt
 <div created="20210525162932624" modified="20210525162932624" title="$:/config/DefaultSidebarTab">
 <pre>GrowRuckToC</pre>
 </div>
-<div created="20210526215541679" modified="20210526215541679" title="$:/config/DragAndDrop/Enable">
-<pre>no</pre>
-</div>
 <div caption="Kookma Plugin Library" created="20200306121057751" modified="20200323203955814" revision="0" tags="$:/tags/PluginLibrary" title="$:/config/KookmaPluginLibrary" type="text/vnd.tiddlywiki" url="https://kookma.github.io/TW-PluginLibrary/library/index.html">
 <pre>Kookma plugin library is a set of plugins, themes, and scripts, to extend functionality and add new features to Tiddlywiki. For detail information visit the library at [[GitHub|https://github.com/kookma]]. It is recommended to backup your data before installing any plugin, theme, or script. 
 
@@ -486,20 +479,11 @@ To use in other wikis, drag and drop this link to those wikis: [[Kookma Plugin L
 <div created="20210526214952944" modified="20210526214952944" title="$:/config/PageControlButtons/Visibility/$:/plugins/kookma/utility/ui/Buttons/ViewFields">
 <pre>hide</pre>
 </div>
-<div created="20210526215541677" modified="20210526215541679" title="$:/config/utility/author" type="application/json">
-<pre>{
-    &quot;$:/core/ui/SideBar/Open&quot;: &quot;$:/tags/SideBar&quot;,
-    &quot;$:/core/ui/SideBar/Recent&quot;: &quot;$:/tags/SideBar&quot;,
-    &quot;$:/core/ui/SideBar/Tools&quot;: &quot;$:/tags/SideBar&quot;,
-    &quot;$:/core/ui/SideBar/More&quot;: &quot;$:/tags/SideBar&quot;,
-    &quot;$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions&quot;: &quot;show&quot;
-}</pre>
-</div>
 <div created="20210526215006187" modified="20210526215006187" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit">
 <pre>hide</pre>
 </div>
-<div created="20210526215217315" modified="20210526215541679" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions">
-<pre>hide</pre>
+<div created="20210526215217315" modified="20210526215706266" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/more-tiddler-actions">
+<pre>show</pre>
 </div>
 <div created="20210526214854129" modified="20210526214854129" title="$:/config/WikiParserRules/Inline/wikilink">
 <pre>disable</pre>
@@ -10368,13 +10352,13 @@ To use in other wikis, drag and drop this link to those wikis: [[Kookma Plugin L
     }
 }</pre>
 </div>
-<div caption="{{$:/language/SideBar/More/Caption}}" modified="20210526215541679" title="$:/core/ui/SideBar/More">
+<div caption="{{$:/language/SideBar/More/Caption}}" modified="20210526215706267" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/More">
 <pre>&lt;div class=&quot;tc-more-sidebar&quot;&gt;
 &lt;$macrocall $name=&quot;tabs&quot; tabsList=&quot;[all[shadows+tiddlers]tag[$:/tags/MoreSideBar]!has[draft.of]]&quot; default={{$:/config/DefaultMoreSidebarTab}} state=&quot;$:/state/tab/moresidebar&quot; class=&quot;tc-vertical tc-sidebar-tabs-more&quot; explicitState=&quot;$:/state/tab/moresidebar-1850697562&quot;/&gt;
 &lt;/div&gt;
 </pre>
 </div>
-<div caption="{{$:/language/SideBar/Open/Caption}}" modified="20210526215541677" title="$:/core/ui/SideBar/Open">
+<div caption="{{$:/language/SideBar/Open/Caption}}" modified="20210526215706268" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Open">
 <pre>\whitespace trim
 \define lingo-base() $:/language/CloseAll/
 
@@ -10410,11 +10394,11 @@ $button$
 &lt;/div&gt;
 </pre>
 </div>
-<div caption="{{$:/language/SideBar/Recent/Caption}}" modified="20210526215541678" title="$:/core/ui/SideBar/Recent">
+<div caption="{{$:/language/SideBar/Recent/Caption}}" modified="20210526215706270" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Recent">
 <pre>&lt;$macrocall $name=&quot;timeline&quot; format={{$:/language/RecentChanges/DateFormat}}/&gt;
 </pre>
 </div>
-<div caption="{{$:/language/SideBar/Tools/Caption}}" modified="20210526215541678" title="$:/core/ui/SideBar/Tools">
+<div caption="{{$:/language/SideBar/Tools/Caption}}" modified="20210526215706270" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Tools">
 <pre>\define lingo-base() $:/language/ControlPanel/
 \define config-title()
 $:/config/PageControlButtons/Visibility/$(listItem)$
@@ -12546,11 +12530,11 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
 <div created="20210526215500240" modified="20210526215503554" title="$:/state/dropdown/keyboardshortcut/switch-author-286565879">
 <pre>close</pre>
 </div>
-<div created="20210525153117597" modified="20210526215547313" title="$:/state/notebook-sidebar">
-<pre>no</pre>
+<div created="20210525153117597" modified="20210526215709043" title="$:/state/notebook-sidebar">
+<pre>yes</pre>
 </div>
-<div created="20210525153118955" modified="20210526214446378" title="$:/state/notebook-sidebar-section">
-<pre>$:/core/ui/SideBar/Tools</pre>
+<div created="20210525153118955" modified="20210526215714328" title="$:/state/notebook-sidebar-section">
+<pre>GrowRuckToC</pre>
 </div>
 <div created="20210526215137568" modified="20210526215150409" title="$:/state/tab--1222441495">
 <pre>$:/plugins/kookma/utility/author/tools</pre>
@@ -12585,7 +12569,7 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210526214809199" list="[[The Steve]]" modified="20210526215445706" title="$:/StoryList">
+<div created="20210526214809199" list="[[GrowRuck SLT]] [[The Steve]]" modified="20210526215716023" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20201211110239190" modified="20201211110239238" revision="0" title="$:/theme" type="text/vnd.tiddlywiki">
@@ -13052,14 +13036,34 @@ GrowRuck is ideally suited for AOs (or a collection of locations) that have been
 [[GrowRuck SLT]]
 </pre>
 </div>
-<div created="20210515032313559" modified="20210525163018436" tags="GrowRuckToC GrowRuck" title="GrowRuck SLT">
-<pre>| Role | Responsibilities | Current Q |h
+<div created="20210515032313559" modified="20210526220349017" tags="GrowRuckToC GrowRuck" title="GrowRuck SLT">
+<pre>|customTable|k
+| Role | Responsibilities | Current Q |h
 | Executive Q (ExQ) | Overall success of GrowRuck program | [[Jordan &quot;Gus&quot; Carpenter|mailto:gus@f3nation.com]] |
 | Future Ops (FuOps) | - Identify future event regions&lt;br&gt;- Assess viability of regions to host events&lt;br&gt;- Develop rucking culture in host regions | Ben &quot;Kilo&quot; Clark |
 | Current Ops (CuOps) | - Ensure execution of events in the ~4mo time window&lt;br&gt;- Work with EventQ/HostQ to ensure their success&lt;br&gt;- Apply G3LT and LDP principles to event execution | Jamie &quot;Repeato&quot; Roseborough |
 | Cadre Lead | - Work with Cadre to ensure proper event staffing&lt;br&gt;- Develop pipeline of future Cadre | |
 | Trainer Lead | Work with Trainers to ensure proper event staffing&lt;br&gt;- Develop pipeline of future Trainers&lt;br&gt;- Continuously iterate on G3LT curriculum | |
-| IT/Docs/Weaselshaker | - Provide clarity and enablement around all things GrowRuck&lt;br&gt;- Work with Nation IT to articulate needs and develop solutions | |</pre>
+| IT/Docs/Weaselshaker | - Provide clarity and enablement around all things GrowRuck&lt;br&gt;- Work with Nation IT to articulate needs and develop solutions | |
+
+even rows:
+.customTable tr:nth-child(even){
+	font-family:cursive;
+	color:red;
+}
+
+odd rows:
+.customTable tr:nth-child(odd){
+	background-color:orange;
+	font-family:fantasy;
+}
+
+every other column AFTER the 3rd column
+.customTable tr td:nth-child(2n+3){
+	font-family:georgia;
+	font-weight:bold;
+	font-size:20px;
+}</pre>
 </div>
 <div caption="GrowRuck" created="20210515031859618" list-after="$:/core/ui/SideBar/" modified="20210526215212206" tags="$:/tags/SideBar excluded" title="GrowRuckToC">
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
